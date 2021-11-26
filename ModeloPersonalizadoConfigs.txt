@@ -1,0 +1,50 @@
+MODIFICANDO yolov4.custom.cfg
+
+#PARA GASTAR MENOS MEMÓRIA
+subdivisions=64
+
+#PARA MAIS DESEMPENHO, DIMINUIR A DIMENSÃO DAS IMAGENS
+width=416
+height=416
+
+#AJUSTANDO O NÚMERO DE BATCHES
+#2000 * o número de classes
+#2000 * 10 classes = 20000
+max_batches = 20000
+
+
+#AJUSTAR O NÚMERO DE ÉPOCAS
+#DEFINIR O VALOR COMO 80%/90% DO max_batches
+
+steps=4800,5400
+
+#VA PARA CHAVES [yolo] 
+
+#ALTERAR O NÚMERO DE CLASSES DO MODELO
+classes=3
+
+#VA PARA CHAVES [convolutional]
+#ALTERE OS FILTROS DE ACORDO COM O RECOMENDÁVEL
+#(numero de classes + 5) * 3
+
+filters=24
+
+#NO ARQUIVO obj.names, COLOQUE O NOME DAS CLASSES
+Apple
+Coffee cup
+Horse
+
+#NO ARQUIVO obj.data, COLOQUE AS CONFIGURAÇÕES
+classes = 3
+train = data/train.txt
+valid = data/test.txt
+names = data/obj.names
+backup = /yolo/recursos
+
+#Após o treinamento e satisfeito
+#Colocar no batch e subdivisions , o número 1, para não ir de 64 em 64 imagens
+
+[net]
+batch = 1
+subdivisions = 1
+
